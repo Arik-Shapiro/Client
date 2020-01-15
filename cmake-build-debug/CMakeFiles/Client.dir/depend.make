@@ -3,15 +3,26 @@
 
 CMakeFiles/Client.dir/main.cpp.o: ../include/BlockingQueue.h
 CMakeFiles/Client.dir/main.cpp.o: ../include/Client.h
+CMakeFiles/Client.dir/main.cpp.o: ../include/ClientProtocol.h
+CMakeFiles/Client.dir/main.cpp.o: ../include/Inventory.h
+CMakeFiles/Client.dir/main.cpp.o: ../include/Message.h
 CMakeFiles/Client.dir/main.cpp.o: ../include/Transmitter.h
 CMakeFiles/Client.dir/main.cpp.o: ../include/connectionHandler.h
 CMakeFiles/Client.dir/main.cpp.o: ../main.cpp
 
 CMakeFiles/Client.dir/src/Client.cpp.o: ../include/BlockingQueue.h
 CMakeFiles/Client.dir/src/Client.cpp.o: ../include/Client.h
+CMakeFiles/Client.dir/src/Client.cpp.o: ../include/ClientProtocol.h
+CMakeFiles/Client.dir/src/Client.cpp.o: ../include/Inventory.h
+CMakeFiles/Client.dir/src/Client.cpp.o: ../include/Message.h
 CMakeFiles/Client.dir/src/Client.cpp.o: ../include/Transmitter.h
 CMakeFiles/Client.dir/src/Client.cpp.o: ../include/connectionHandler.h
 CMakeFiles/Client.dir/src/Client.cpp.o: ../src/Client.cpp
+
+CMakeFiles/Client.dir/src/ClientProtocol.cpp.o: ../include/ClientProtocol.h
+CMakeFiles/Client.dir/src/ClientProtocol.cpp.o: ../include/Inventory.h
+CMakeFiles/Client.dir/src/ClientProtocol.cpp.o: ../include/Message.h
+CMakeFiles/Client.dir/src/ClientProtocol.cpp.o: ../src/ClientProtocol.cpp
 
 CMakeFiles/Client.dir/src/Inventory.cpp.o: ../include/Inventory.h
 CMakeFiles/Client.dir/src/Inventory.cpp.o: ../src/Inventory.cpp
@@ -20,6 +31,8 @@ CMakeFiles/Client.dir/src/Message.cpp.o: ../include/Message.h
 CMakeFiles/Client.dir/src/Message.cpp.o: ../src/Message.cpp
 
 CMakeFiles/Client.dir/src/Transmitter.cpp.o: ../include/BlockingQueue.h
+CMakeFiles/Client.dir/src/Transmitter.cpp.o: ../include/ClientProtocol.h
+CMakeFiles/Client.dir/src/Transmitter.cpp.o: ../include/Inventory.h
 CMakeFiles/Client.dir/src/Transmitter.cpp.o: ../include/Message.h
 CMakeFiles/Client.dir/src/Transmitter.cpp.o: ../include/Transmitter.h
 CMakeFiles/Client.dir/src/Transmitter.cpp.o: ../include/connectionHandler.h

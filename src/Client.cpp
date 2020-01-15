@@ -35,13 +35,14 @@ std::string Client::processUserCommand(std::string &userCommand) {
             return "";
         }
         logged_in = true;
-        std::thread transThread(&Transmitter::run, &transmitter);
+        std::thread transThread(&Transmitter::run, &transmitter, std::ref(*handler));
+        transThread.detach();
         std::string stompMessage =
                 "CONNECT\naccept-version:1.2\nhost:" + ip + "\nlogin:" + command[2] + "\npasscode:" + command[3] + '\n';
         return stompMessage;
     }
     return std::__cxx11::string();
 }
-Client::Client() : logged_in(false), handler(nullptr), protocol(), transmitter(*handler, protocol){
+Client::Client() : logged_in(false), handler(nullptr), protocol(), transmitter(protocol){
     start();
 }

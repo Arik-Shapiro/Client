@@ -4,15 +4,26 @@
 CMakeFiles/Client.dir/main.cpp.o
  ../include/BlockingQueue.h
  ../include/Client.h
+ ../include/ClientProtocol.h
+ ../include/Inventory.h
+ ../include/Message.h
  ../include/Transmitter.h
  ../include/connectionHandler.h
  /home/arik/CLionProjects/Client/main.cpp
 CMakeFiles/Client.dir/src/Client.cpp.o
  /home/arik/CLionProjects/Client/include/BlockingQueue.h
  /home/arik/CLionProjects/Client/include/Client.h
+ /home/arik/CLionProjects/Client/include/ClientProtocol.h
+ /home/arik/CLionProjects/Client/include/Inventory.h
+ /home/arik/CLionProjects/Client/include/Message.h
  /home/arik/CLionProjects/Client/include/Transmitter.h
  /home/arik/CLionProjects/Client/include/connectionHandler.h
  /home/arik/CLionProjects/Client/src/Client.cpp
+CMakeFiles/Client.dir/src/ClientProtocol.cpp.o
+ ../include/ClientProtocol.h
+ ../include/Inventory.h
+ ../include/Message.h
+ /home/arik/CLionProjects/Client/src/ClientProtocol.cpp
 CMakeFiles/Client.dir/src/Inventory.cpp.o
  ../include/Inventory.h
  /home/arik/CLionProjects/Client/src/Inventory.cpp
@@ -21,6 +32,8 @@ CMakeFiles/Client.dir/src/Message.cpp.o
  /home/arik/CLionProjects/Client/src/Message.cpp
 CMakeFiles/Client.dir/src/Transmitter.cpp.o
  ../include/BlockingQueue.h
+ ../include/ClientProtocol.h
+ ../include/Inventory.h
  ../include/Message.h
  ../include/Transmitter.h
  ../include/connectionHandler.h

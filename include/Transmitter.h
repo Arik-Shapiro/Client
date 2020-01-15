@@ -11,11 +11,10 @@
 
 class Transmitter{
 public:
-    Transmitter(ConnectionHandler &handler, ClientProtocol &protocol);
-    void run();
+    Transmitter(ClientProtocol &protocol);
+    void run(ConnectionHandler &handler);
     void close();
 private:
-    ConnectionHandler &handler;
     ClientProtocol &protocol;
 };
 #endif //CLIENT_TRANSMITTER_H

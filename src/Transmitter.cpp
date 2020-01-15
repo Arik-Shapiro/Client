@@ -4,9 +4,8 @@
 
 #include <include/Transmitter.h>
 #include <include/Message.h>
-#include <boost/algorithm/string.hpp>
 
-void Transmitter::run() {
+void Transmitter::run(ConnectionHandler &handler) {
     while (!protocol.ShouldTerminate()) {
         std::string answer;
         if (!handler.getLine(answer)) {
@@ -15,20 +14,20 @@ void Transmitter::run() {
         Message stompAnswer(answer);
         Message *stompMessage = protocol.processServerMessage(stompAnswer);
         std::string stompString = stompAnswer.toString();
-        if (!stompMessage)
+        if (stompMessage != nullptr)
             if (!handler.sendLine(stompString)) {
                 close();
             }
+        delete(stompMessage);
     }
+    handler.close();
 }
 
 
-Transmitter::Transmitter(ConnectionHandler &handler, ClientProtocol &protocol) : handler(handler),
-                                                                                 protocol(protocol) {
+Transmitter::Transmitter(ClientProtocol &protocol) : protocol(protocol) {
 }
 
 void Transmitter::close() {
-    handler.close();
     protocol.setShouldTerminate(true);
 }
 

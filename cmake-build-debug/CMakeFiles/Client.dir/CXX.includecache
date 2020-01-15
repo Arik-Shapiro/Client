@@ -6,9 +6,53 @@
 
 #IncludeRegexTransform: 
 
-../include/Inventory.h
+../include/BlockingQueue.h
+mutex
+-
+condition_variable
+-
+deque
+-
 
-/home/arik/CLionProjects/Client/src/Inventory.cpp
-include/Inventory.h
+../include/ClientProtocol.h
+string
+-
+Inventory.h
+../include/Inventory.h
+Message.h
+../include/Message.h
+
+../include/Inventory.h
+map
+-
+
+../include/Message.h
+string
+-
+map
+-
+
+../include/Transmitter.h
+BlockingQueue.h
+../include/BlockingQueue.h
+connectionHandler.h
+../include/connectionHandler.h
+ClientProtocol.h
+../include/ClientProtocol.h
+
+../include/connectionHandler.h
+string
+-
+iostream
+-
+boost/asio.hpp
+-
+mutex
+-
+
+/home/arik/CLionProjects/Client/src/Transmitter.cpp
+include/Transmitter.h
+-
+include/Message.h
 -
 
