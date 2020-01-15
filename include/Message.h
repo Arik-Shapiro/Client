@@ -23,8 +23,8 @@ public:
     const std::string &getCommand() const;
     std::string toString();
     const std::map<std::string, std::string> &getHeaders() const;
-
     const std::string &getBody() const;
+    static std::string stringWithoutReceipt(Message &message);
 };
 
 
