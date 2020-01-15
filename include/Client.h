@@ -18,10 +18,18 @@ private:
     void start();
     void readNextLine();
     ConnectionHandler *handler;
-    bool logged_in;
+    bool connectedSocket;
     std::string processUserCommand(std::string &userCommand);
     Transmitter transmitter;
     ClientProtocol protocol;
+    std::string processLoginCommand(std::vector<std::string> &command,std::string name);
+    std::string processJoinCommand(std::vector<std::string> &command);
+    std::string processExitCommand(std::vector<std::string> &command);
+    std::string processAddCommand(std::vector<std::string> &command, std::string userCommand,std::string name);
+    std::string processBorrowCommand(std::vector<std::string> &command);
+    std::string processLogoutCommand();
+
+    std::string processStatusCommand(std::vector<std::string> &command);
 };
 
 

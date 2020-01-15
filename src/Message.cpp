@@ -24,6 +24,23 @@ Message::Message(std::string &message) {
     }
     body = message;
 }
+std::string Message::stringWithoutReceipt(Message &message)
+{
+    std::string answer = message.getBody();
+    // Create a map iterator and point to beginning of map
+    std::map<std::string, std::string> headers = message.getHeaders();
+    std::map<std::string, std::string>::iterator it = headers.begin();
+    while (it != headers.end())
+    {
+        std::string word = it->first;
+        if(word != "receipt")
+        {
+            answer += it->first + ":" + it-> second + '\n';
+        }
+    }
+    answer += message.getBody() + '\n';
+    return answer;
+}
 
 const std::string &Message::getCommand() const {
     return command;
