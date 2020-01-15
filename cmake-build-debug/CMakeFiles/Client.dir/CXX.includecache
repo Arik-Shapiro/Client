@@ -66,7 +66,7 @@ boost/asio.hpp
 mutex
 -
 
-/home/arik/CLionProjects/Client/include/BlockingQueue.h
+/home/lior/CLionProjects/Client/include/BlockingQueue.h
 mutex
 -
 condition_variable
@@ -74,49 +74,49 @@ condition_variable
 deque
 -
 
-/home/arik/CLionProjects/Client/include/Client.h
+/home/lior/CLionProjects/Client/include/Client.h
 string
 -
 queue
 -
 connectionHandler.h
-/home/arik/CLionProjects/Client/include/connectionHandler.h
+/home/lior/CLionProjects/Client/include/connectionHandler.h
 BlockingQueue.h
-/home/arik/CLionProjects/Client/include/BlockingQueue.h
+/home/lior/CLionProjects/Client/include/BlockingQueue.h
 Transmitter.h
-/home/arik/CLionProjects/Client/include/Transmitter.h
+/home/lior/CLionProjects/Client/include/Transmitter.h
 thread
 -
 
-/home/arik/CLionProjects/Client/include/ClientProtocol.h
+/home/lior/CLionProjects/Client/include/ClientProtocol.h
 string
 -
 Inventory.h
-/home/arik/CLionProjects/Client/include/Inventory.h
+/home/lior/CLionProjects/Client/include/Inventory.h
 Message.h
-/home/arik/CLionProjects/Client/include/Message.h
+/home/lior/CLionProjects/Client/include/Message.h
 
-/home/arik/CLionProjects/Client/include/Inventory.h
+/home/lior/CLionProjects/Client/include/Inventory.h
 map
 -
 vector
 -
 
-/home/arik/CLionProjects/Client/include/Message.h
+/home/lior/CLionProjects/Client/include/Message.h
 string
 -
 map
 -
 
-/home/arik/CLionProjects/Client/include/Transmitter.h
+/home/lior/CLionProjects/Client/include/Transmitter.h
 BlockingQueue.h
-/home/arik/CLionProjects/Client/include/BlockingQueue.h
+/home/lior/CLionProjects/Client/include/BlockingQueue.h
 connectionHandler.h
-/home/arik/CLionProjects/Client/include/connectionHandler.h
+/home/lior/CLionProjects/Client/include/connectionHandler.h
 ClientProtocol.h
-/home/arik/CLionProjects/Client/include/ClientProtocol.h
+/home/lior/CLionProjects/Client/include/ClientProtocol.h
 
-/home/arik/CLionProjects/Client/include/connectionHandler.h
+/home/lior/CLionProjects/Client/include/connectionHandler.h
 string
 -
 iostream
@@ -126,21 +126,21 @@ boost/asio.hpp
 mutex
 -
 
-/home/arik/CLionProjects/Client/main.cpp
+/home/lior/CLionProjects/Client/main.cpp
 iostream
 -
 include/Client.h
 -
 
-/home/arik/CLionProjects/Client/src/Client.cpp
+/home/lior/CLionProjects/Client/src/Client.cpp
 boost/algorithm/string/classification.hpp
 -
 boost/algorithm/string/split.hpp
 -
 ../include/Client.h
-/home/arik/CLionProjects/Client/include/Client.h
+/home/lior/CLionProjects/Client/include/Client.h
 
-/home/arik/CLionProjects/Client/src/ClientProtocol.cpp
+/home/lior/CLionProjects/Client/src/ClientProtocol.cpp
 include/ClientProtocol.h
 -
 iostream
@@ -148,13 +148,21 @@ iostream
 algorithm
 -
 
-/home/arik/CLionProjects/Client/src/Inventory.cpp
+/home/lior/CLionProjects/Client/src/Inventory.cpp
 include/Inventory.h
 -
 
-/home/arik/CLionProjects/Client/src/Transmitter.cpp
+/home/lior/CLionProjects/Client/src/Message.cpp
+include/Message.h
+-
+
+/home/lior/CLionProjects/Client/src/Transmitter.cpp
 include/Transmitter.h
 -
 include/Message.h
+-
+
+/home/lior/CLionProjects/Client/src/connectionHandler.cpp
+include/connectionHandler.h
 -
 

@@ -136,7 +136,14 @@ std::string ClientProtocol::processAdd(std::string &dest, std::string &bookName,
             }
         return "";
     }
-    return "";
+    books[dest].push_back(bookName);
+    std::string stompMessage =
+            "SEND\ndestination:" + dest + "receipt:" + std::to_string(inventory.getReceiptId())
+            +'\n' + name + "has added the book" + bookName +'\n';
+    std::map<int,std::string> &rec = inventory.getReceiptIdToCommand();
+    rec.insert({inventory.getReceiptId(),"ADD"});
+    inventory.increaseReceipt();
+    return stompMessage;
 }
 
 
