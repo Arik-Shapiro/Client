@@ -70,7 +70,7 @@ Message *ClientProtocol::acceptReceipt(Message &message) {
 }
 std::string ClientProtocol::processStatus(std::string &dest)
 {
-    std::map<int,std::string> rec = inventory.getReceiptIdToCommand();
+    std::map<int,std::string> &rec = inventory.getReceiptIdToCommand();
     rec.insert({inventory.getReceiptId(),"STATUS"});
     std::string stompMessage =
             "SEND\nreceipt:" + std::to_string(inventory.getReceiptId()) + "destination:" + dest +"\n";
@@ -78,7 +78,7 @@ std::string ClientProtocol::processStatus(std::string &dest)
     return stompMessage;
 };
 std::string ClientProtocol::processLogout() {
-    std::map<int,std::string> rec = inventory.getReceiptIdToCommand();
+    std::map<int,std::string> &rec = inventory.getReceiptIdToCommand();
     rec.insert({inventory.getReceiptId(),"Logout"});
     std::string stompMessage =
             "DISCONNECT\nreceipt:" + std::to_string(inventory.getReceiptId()) + "\n";
@@ -86,7 +86,7 @@ std::string ClientProtocol::processLogout() {
     return stompMessage;
 }
 std::string ClientProtocol::processJoin(std::string &dest){
-    std::map<std::string,int> genreToId = inventory.getGenreToSubId();
+    std::map<std::string,int> &genreToId = inventory.getGenreToSubId();
     auto itReceipt = genreToId.find(dest);
     if(itReceipt != genreToId.end()) { // user already subscribed to that genre
         std::string stompMessage =
@@ -98,14 +98,14 @@ std::string ClientProtocol::processJoin(std::string &dest){
     std::string stompMessage =
             "SUBSCRIBE\ndestination:" + dest + "\nid:" + std::to_string(inventory.getSubId()) + "\nreceipt:" +
             std::to_string(inventory.getReceiptId()) + '\n';
-        genreToId.insert({dest,inventory.getSubId()}); // gave a topic an id
+        genreToId.insert({dest, inventory.getSubId()});// gave a topic an id
         inventory.increaseReceipt();
         inventory.increaseSubId();
     return stompMessage;
 }
 std::string ClientProtocol::processExit(std::string &dest)
 {
-    std::map<std::string,int> genreToId = inventory.getGenreToSubId();
+    std::map<std::string,int> &genreToId = inventory.getGenreToSubId();
     auto itReceipt = genreToId.find(dest);
     if(itReceipt != genreToId.end()) { // user is subscribed to that genre
         std::string stompMessage =
@@ -119,17 +119,17 @@ std::string ClientProtocol::processExit(std::string &dest)
 }
 std::string ClientProtocol::processAdd(std::string &dest, std::string &bookName,std::string &name)
 {
-    std::map<std::string, std::vector<std::string>> books = inventory.getGenreToBooks();
+    std::map<std::string, std::vector<std::string>> &books = inventory.getGenreToBooks();
     auto itReceipt = books.find(dest);
     if(itReceipt != books.end()) {
-        std::vector<std::string> booksOfGenre= itReceipt->second;
+        std::vector<std::string> &booksOfGenre= itReceipt->second;
         if(!std::count(booksOfGenre.begin(),booksOfGenre.end(),bookName))
             {
             booksOfGenre.push_back(bookName);
                 std::string stompMessage =
                         "SEND\ndestination:" + dest + "receipt:" + std::to_string(inventory.getReceiptId())
                         +'\n' + name + "has added the book" + bookName +'\n';
-               std::map<int,std::string> rec = inventory.getReceiptIdToCommand();
+               std::map<int,std::string> &rec = inventory.getReceiptIdToCommand();
                rec.insert({inventory.getReceiptId(),"ADD"});
                inventory.increaseReceipt();
                return stompMessage;

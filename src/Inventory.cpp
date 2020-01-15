@@ -9,7 +9,7 @@ Inventory &Inventory::getInstance() {
     static Inventory inventory;
     return  inventory;
 }
-const std::map<int, std::string> &Inventory::getReceiptIdToCommand() const {
+std::map<int, std::string> &Inventory::getReceiptIdToCommand(){
     return receiptIdToCommand;
 }
 int Inventory::getSubId() const {
@@ -24,10 +24,10 @@ void Inventory::increaseReceipt() {
 void Inventory::increaseSubId() {
     subId++;
 }
-const std::map<std::string,int> &Inventory::getGenreToSubId() const {
+std::map<std::string,int> &Inventory::getGenreToSubId() {
     return genreToSubId;
 }
-const std::map<std::string, std::vector<std::string>> &Inventory::getGenreToBooks() const {
+std::map<std::string, std::vector<std::string>> &Inventory::getGenreToBooks(){
     return genreToBooks;
 }
 

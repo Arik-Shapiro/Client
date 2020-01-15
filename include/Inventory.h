@@ -11,9 +11,9 @@
 class Inventory{
 public:
     static Inventory& getInstance();
-    const std::map<int, std::string> &getReceiptIdToCommand() const;
-    const std::map<std::string, std::vector<std::string>> &getGenreToBooks() const;
-    const std::map<std::string, int> &getGenreToSubId() const;
+    std::map<int, std::string> &getReceiptIdToCommand();
+    std::map<std::string, std::vector<std::string>> &getGenreToBooks();
+    std::map<std::string, int> &getGenreToSubId();
     int getSubId() const;
     void increaseSubId();
     int getReceiptId() const;

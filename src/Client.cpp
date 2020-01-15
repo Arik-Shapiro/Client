@@ -83,14 +83,14 @@ std::string Client::processLoginCommand(std::vector<std::string> &command,std::s
         return "";
     }
     connectedSocket = true;
-    std::thread transThread(&Transmitter::run, &transmitter);
+    std::thread transThread(&Transmitter::run, &transmitter, std::ref(*handler));
     transThread.detach();
     name = command[2];
     std::string stompMessage =
             "CONNECT\naccept-version:1.2\nhost:" + ip + "\nlogin:" + command[2] + "\npasscode:" + command[3] + '\n';
     return stompMessage;
 }
-Client::Client() : connectedSocket(false), handler(nullptr), protocol(), transmitter(*handler, protocol){
+Client::Client() : connectedSocket(false), handler(nullptr), protocol(), transmitter(protocol){
     start();
 }
 std::string Client::processBorrowCommand(std::vector<std::string> &command) {
