@@ -12,9 +12,11 @@ void Transmitter::run() {
         if (!handler.getLine(answer)) {
             close();
         }
-        std::string stompMessage = protocol.processServerMessage(answer);
-        if (!stompMessage.empty())
-            if (!handler.sendLine(stompMessage)) {
+        Message stompAnswer(answer);
+        Message *stompMessage = protocol.processServerMessage(stompAnswer);
+        std::string stompString = stompAnswer.toString();
+        if (!stompMessage)
+            if (!handler.sendLine(stompString)) {
                 close();
             }
     }

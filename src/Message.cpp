@@ -36,3 +36,7 @@ const std::map<std::string, std::string> &Message::getHeaders() const {
 const std::string &Message::getBody() const {
     return body;
 }
+
+std::string Message::toString() {
+    return std::__cxx11::string();
+}
