@@ -19,6 +19,7 @@ public:
     std::string processJoin(std::string &dest);
     std::string processExit(std::string &dest);
     std::string processAdd(std::string &dest, std::string &bookName, std::string &name);
+    std::string processBorrow(std::string &dest, std::string &bookName, std::string &name);
     std::string processLogout();
     std::string processStatus(std::string &);
 private:

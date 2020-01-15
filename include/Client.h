@@ -22,10 +22,11 @@ private:
     std::string processUserCommand(std::string &userCommand);
     Transmitter transmitter;
     ClientProtocol protocol;
-    std::string processLoginCommand(std::vector<std::string> &command,std::string name);
+    std::string* name;
+    std::string processLoginCommand(std::vector<std::string> &command);
     std::string processJoinCommand(std::vector<std::string> &command);
     std::string processExitCommand(std::vector<std::string> &command);
-    std::string processAddCommand(std::vector<std::string> &command, std::string userCommand,std::string name);
+    std::string processAddCommand(std::vector<std::string> &command, std::string userCommand);
     std::string processBorrowCommand(std::vector<std::string> &command);
     std::string processLogoutCommand();
 
