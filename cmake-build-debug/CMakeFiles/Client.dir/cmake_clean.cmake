@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Client.dir/main.cpp.o"
   "CMakeFiles/Client.dir/src/Client.cpp.o"
+  "CMakeFiles/Client.dir/src/ClientProtocol.cpp.o"
   "CMakeFiles/Client.dir/src/Inventory.cpp.o"
   "CMakeFiles/Client.dir/src/Message.cpp.o"
   "CMakeFiles/Client.dir/src/Transmitter.cpp.o"

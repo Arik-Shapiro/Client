@@ -10,4 +10,8 @@ Inventory &Inventory::getInstance() {
     return  inventory;
 }
 
+const std::map<int, std::string> &Inventory::getReceiptIdToCommand() const {
+    return receiptIdToCommand;
+}
+
 

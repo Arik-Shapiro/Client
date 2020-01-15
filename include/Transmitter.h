@@ -7,22 +7,15 @@
 
 #include "BlockingQueue.h"
 #include "connectionHandler.h"
+#include "ClientProtocol.h"
+
 class Transmitter{
 public:
-    Transmitter(BlockingQueue<std::string> &messageQueue);
-
+    Transmitter(ConnectionHandler &handler, ClientProtocol &protocol);
     void run();
+    void close();
 private:
-    std::string processUserCommand(std::string&);
-    BlockingQueue<std::string> &messageQueue;
-    ConnectionHandler *handler;
-    bool terminate;
-public:
-    bool isTerminated() const;
-
-private:
-    bool logged_in;
-public:
-    bool isLoggedIn() const;
+    ConnectionHandler &handler;
+    ClientProtocol &protocol;
 };
 #endif //CLIENT_TRANSMITTER_H

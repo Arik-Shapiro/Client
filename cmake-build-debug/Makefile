@@ -177,6 +177,33 @@ src/Client.cpp.s:
 	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/Client.cpp.s
 .PHONY : src/Client.cpp.s
 
+src/ClientProtocol.o: src/ClientProtocol.cpp.o
+
+.PHONY : src/ClientProtocol.o
+
+# target to build an object file
+src/ClientProtocol.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/ClientProtocol.cpp.o
+.PHONY : src/ClientProtocol.cpp.o
+
+src/ClientProtocol.i: src/ClientProtocol.cpp.i
+
+.PHONY : src/ClientProtocol.i
+
+# target to preprocess a source file
+src/ClientProtocol.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/ClientProtocol.cpp.i
+.PHONY : src/ClientProtocol.cpp.i
+
+src/ClientProtocol.s: src/ClientProtocol.cpp.s
+
+.PHONY : src/ClientProtocol.s
+
+# target to generate assembly for a file
+src/ClientProtocol.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/ClientProtocol.cpp.s
+.PHONY : src/ClientProtocol.cpp.s
+
 src/Inventory.o: src/Inventory.cpp.o
 
 .PHONY : src/Inventory.o
@@ -300,6 +327,9 @@ help:
 	@echo "... src/Client.o"
 	@echo "... src/Client.i"
 	@echo "... src/Client.s"
+	@echo "... src/ClientProtocol.o"
+	@echo "... src/ClientProtocol.i"
+	@echo "... src/ClientProtocol.s"
 	@echo "... src/Inventory.o"
 	@echo "... src/Inventory.i"
 	@echo "... src/Inventory.s"

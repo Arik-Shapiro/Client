@@ -4,9 +4,15 @@
 
 #ifndef CLIENT_INVENTORY_H
 #define CLIENT_INVENTORY_H
+
+#include <map>
+
 class Inventory{
 public:
     static Inventory& getInstance();
+    const std::map<int, std::string> &getReceiptIdToCommand() const;
+private:
+    std::map<int, std::string> receiptIdToCommand;
 private:
     Inventory();
 };

@@ -35,9 +35,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/arik/CLionProjects/Client/."/>
-					<Add directory="/home/arik/CLionProjects/Client/bin"/>
-					<Add directory="/home/arik/CLionProjects/Client/include"/>
-					<Add directory="/home/arik/CLionProjects/Client/src"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -62,9 +59,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/arik/CLionProjects/Client/."/>
-					<Add directory="/home/arik/CLionProjects/Client/bin"/>
-					<Add directory="/home/arik/CLionProjects/Client/include"/>
-					<Add directory="/home/arik/CLionProjects/Client/src"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -98,6 +92,9 @@
 		<Unit filename="/home/arik/CLionProjects/Client/include/Client.h">
 			<Option target="Client"/>
 		</Unit>
+		<Unit filename="/home/arik/CLionProjects/Client/include/ClientProtocol.h">
+			<Option target="Client"/>
+		</Unit>
 		<Unit filename="/home/arik/CLionProjects/Client/include/Inventory.h">
 			<Option target="Client"/>
 		</Unit>
@@ -114,6 +111,9 @@
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/arik/CLionProjects/Client/src/Client.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/arik/CLionProjects/Client/src/ClientProtocol.cpp">
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/arik/CLionProjects/Client/src/Inventory.cpp">

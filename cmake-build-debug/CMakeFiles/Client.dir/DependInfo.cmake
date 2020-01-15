@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/arik/CLionProjects/Client/main.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/main.cpp.o"
   "/home/arik/CLionProjects/Client/src/Client.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Client.cpp.o"
+  "/home/arik/CLionProjects/Client/src/ClientProtocol.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/ClientProtocol.cpp.o"
   "/home/arik/CLionProjects/Client/src/Inventory.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Inventory.cpp.o"
   "/home/arik/CLionProjects/Client/src/Message.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Message.cpp.o"
   "/home/arik/CLionProjects/Client/src/Transmitter.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Transmitter.cpp.o"
@@ -16,9 +17,6 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../."
-  "../bin"
-  "../include"
-  "../src"
   )
 
 # Targets to which this target links.

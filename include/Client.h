@@ -14,12 +14,14 @@
 class Client {
 public:
     Client();
-
 private:
     void start();
     void readNextLine();
-    BlockingQueue<std::string> messageQueue;
+    ConnectionHandler *handler;
+    bool logged_in;
+    std::string processUserCommand(std::string &userCommand);
     Transmitter transmitter;
+    ClientProtocol protocol;
 };
 
 

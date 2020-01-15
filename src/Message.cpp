@@ -2,12 +2,10 @@
 // Created by arik on 13.1.2020.
 //
 
-#include "Message.h"
-
+#include <include/Message.h>
 Message::Message(std::string &command, std::map<std::string, std::string> &headers, std::string &body) : command(command),
                                                                                                       headers(headers),
                                                                                                       body(body) {
-
 }
 
 Message::Message(std::string &message) {
