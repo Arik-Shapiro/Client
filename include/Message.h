@@ -11,9 +11,9 @@
 
 class Message {
 public:
-    Message(std::string &, std::map<std::string, std::string> &, std::string &);
+    //Message(std::string &, std::map<std::string, std::string> &, std::string &);
 
-    Message(std::string &);
+    Message(std::string);
 
 private:
     std::string command;
@@ -24,7 +24,6 @@ public:
     std::string toString();
     const std::map<std::string, std::string> &getHeaders() const;
     const std::string &getBody() const;
-    static std::string stringWithoutReceipt(Message &message);
 };
 
 

@@ -2,13 +2,14 @@
 // Created by arik on 13.1.2020.
 //
 
-#include <include/Message.h>
-Message::Message(std::string &command, std::map<std::string, std::string> &headers, std::string &body) : command(command),
-                                                                                                      headers(headers),
-                                                                                                      body(body) {
-}
+#include "../include/Message.h"
+//Message::Message(std::string &command, std::map<std::string, std::string> &headers, std::string &body) : command(command),
+                                                                                                   //   headers(headers),
+                                                                                                  //    body(body) {
+//}
 
-Message::Message(std::string &message) {
+Message::Message(std::string message) {
+    std::string &mes = message;
     int endLine= message.find('\n');
     command = message.substr(0, endLine);
     message = message.substr(endLine + 1);
@@ -24,24 +25,6 @@ Message::Message(std::string &message) {
     }
     body = message;
 }
-std::string Message::stringWithoutReceipt(Message &message)
-{
-    std::string answer = message.getBody();
-    // Create a map iterator and point to beginning of map
-    std::map<std::string, std::string> headers = message.getHeaders();
-    std::map<std::string, std::string>::iterator it = headers.begin();
-    while (it != headers.end())
-    {
-        std::string word = it->first;
-        if(word != "receipt")
-        {
-            answer += it->first + ":" + it-> second + '\n';
-        }
-    }
-    answer += message.getBody() + '\n';
-    return answer;
-}
-
 const std::string &Message::getCommand() const {
     return command;
 }
@@ -55,5 +38,12 @@ const std::string &Message::getBody() const {
 }
 
 std::string Message::toString() {
-    return std::__cxx11::string();
+    std::string message = this->command + "\n";
+    for(auto it=headers.begin(); it != headers.end(); ++it)
+    {
+        message += it->first + ":" + it->second + "\n";
+    }
+    if(!body.empty())
+        message+= body;
+    return message;
 }

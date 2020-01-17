@@ -2,8 +2,8 @@
 // Created by arik on 13.1.2020.
 //
 
-#include <include/Transmitter.h>
-#include <include/Message.h>
+#include "../include/Transmitter.h"
+#include "../include/Message.h"
 
 void Transmitter::run(ConnectionHandler &handler) {
     while (!protocol.ShouldTerminate()) {
@@ -13,11 +13,12 @@ void Transmitter::run(ConnectionHandler &handler) {
         }
         Message stompAnswer(answer);
         Message *stompMessage = protocol.processServerMessage(stompAnswer);
-        std::string stompString = stompAnswer.toString();
-        if (stompMessage != nullptr)
+        if (stompMessage != nullptr) {
+            std::string stompString = stompMessage->toString();
             if (!handler.sendLine(stompString)) {
                 close();
             }
+        }
         delete(stompMessage);
     }
     handler.close();
