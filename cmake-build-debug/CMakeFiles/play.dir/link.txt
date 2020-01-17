@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/play.dir/main.cpp.o  -o play /usr/lib/x86_64-linux-gnu/libboost_system.so 

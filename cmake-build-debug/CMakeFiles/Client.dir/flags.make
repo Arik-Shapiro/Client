@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/arik/CLionProjects/Client/. -I/home/arik/CLionProjects/Client/bin -I/home/arik/CLionProjects/Client/include -I/home/arik/CLionProjects/Client/src 
+CXX_INCLUDES = -I/home/lior/CLionProjects/Client/. -I/home/lior/CLionProjects/Client/bin -I/home/lior/CLionProjects/Client/include -I/home/lior/CLionProjects/Client/src 
 

@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/arik/CLionProjects/Client/main.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/main.cpp.o"
-  "/home/arik/CLionProjects/Client/src/Client.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Client.cpp.o"
-  "/home/arik/CLionProjects/Client/src/ClientProtocol.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/ClientProtocol.cpp.o"
-  "/home/arik/CLionProjects/Client/src/Inventory.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Inventory.cpp.o"
-  "/home/arik/CLionProjects/Client/src/Message.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Message.cpp.o"
-  "/home/arik/CLionProjects/Client/src/Transmitter.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Transmitter.cpp.o"
-  "/home/arik/CLionProjects/Client/src/connectionHandler.cpp" "/home/arik/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/connectionHandler.cpp.o"
+  "/home/lior/CLionProjects/Client/main.cpp" "/home/lior/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/main.cpp.o"
+  "/home/lior/CLionProjects/Client/src/Client.cpp" "/home/lior/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Client.cpp.o"
+  "/home/lior/CLionProjects/Client/src/ClientProtocol.cpp" "/home/lior/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/ClientProtocol.cpp.o"
+  "/home/lior/CLionProjects/Client/src/Inventory.cpp" "/home/lior/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Inventory.cpp.o"
+  "/home/lior/CLionProjects/Client/src/Message.cpp" "/home/lior/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Message.cpp.o"
+  "/home/lior/CLionProjects/Client/src/Transmitter.cpp" "/home/lior/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/Transmitter.cpp.o"
+  "/home/lior/CLionProjects/Client/src/connectionHandler.cpp" "/home/lior/CLionProjects/Client/cmake-build-debug/CMakeFiles/Client.dir/src/connectionHandler.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
