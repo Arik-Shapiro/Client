@@ -20,6 +20,7 @@ void Client::readNextLine() {
             handler->sendLine(stompCommand);
     }
     delete(handler);
+    delete(name);
 }
 std::string Client::processUserCommand(std::string &userCommand) {
     std::vector<std::string> command;
@@ -47,12 +48,14 @@ std::string Client::processUserCommand(std::string &userCommand) {
     }
     if(command[0] == "borrow")
         return processBorrowCommand(command);
+    if(command[0] == "return")
+        return processReturnCommand(command);
     return std::__cxx11::string();
 }
 std::string Client::processStatusCommand(std::vector<std::string> &command)
 {
     std::string dest = command[1];
-    return protocol.processStatus(dest);
+    return protocol.processStatus(dest,*name);
 }
 std::string Client::processExitCommand(std::vector<std::string> &command){
     std::string destination = command[1];
@@ -83,13 +86,14 @@ std::string Client::processLoginCommand(std::vector<std::string> &command){
     std::string port = address.substr(delimiter + 1);
     handler = new ConnectionHandler(ip, stoi(port));
     if (!handler->connect()) {
-        std::cerr << "Cannot connect to " << address << std::endl;
+        std::cerr << "Cannot connect to server " << address << std::endl;
         return "";
     }
     connectedSocket = true;
     std::thread transThread(&Transmitter::run, &transmitter, std::ref(*handler));
     transThread.detach();
     name = new std::string(command[2]);
+    protocol.setMyName(command[2]);
     std::string stompMessage =
             "CONNECT\naccept-version:1.2\nhost:" + ip + "\nlogin:" + command[2] + "\npasscode:" + command[3] + '\n';
     return stompMessage;
@@ -104,5 +108,14 @@ std::string Client::processBorrowCommand(std::vector<std::string> &command) {
     {
         bookName+=command[i];
     }
-    protocol.processBorrow(destination,bookName,*name);
+    return protocol.processBorrow(destination,bookName,*name);
+}
+std::string Client::processReturnCommand(std::vector<std::string> &command) {
+    std::string bookName;
+    std::string destination = command[1];
+    for(int i = 2 ; i <command.size();i++)
+    {
+        bookName+=command[i];
+    }
+    return protocol.processReturn(destination,bookName,*name);
 }
