@@ -11,8 +11,6 @@
 
 class Message {
 public:
-    //Message(std::string &, std::map<std::string, std::string> &, std::string &);
-
     Message(std::string);
 
 private:
@@ -25,6 +23,4 @@ public:
     const std::map<std::string, std::string> &getHeaders() const;
     const std::string &getBody() const;
 };
-
-
 #endif //CLIENT_MESSAGE_H

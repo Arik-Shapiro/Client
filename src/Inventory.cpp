@@ -40,7 +40,7 @@ std::string Inventory::printInv() {
     for (auto it=getGenreToBooks().begin(); it != getGenreToBooks().end(); ++it)
     {
         std::vector<std::string> books = it->second;
-        for(int i = 0; i<books.size();i++)
+        for(unsigned int i = 0; i<books.size();i++)
         {
             listOfBooks += books[i] + ",";
         }
@@ -53,7 +53,7 @@ bool Inventory::hasBook(std::string bookName,std::string dest)
     if(genre != getGenreToBooks().end())
     {
         std::vector<std::string> b = genre->second;
-        for(int i=0; i<b.size();i++)
+        for(unsigned int i=0; i<b.size();i++)
         {
             if(b[i] == bookName)
                 return true;
@@ -70,12 +70,20 @@ void Inventory::addBook(std::string bookName,std::string dest)
     else
         getGenreToBooks()[dest].push_back(bookName);
 }
+void Inventory::clearData(){
+    receiptIdToCommand.clear();
+    genreToBooks.clear();
+    bookToBorrowers.clear();
+    genreToSubId.clear();
+    subId = 0;
+    receiptId = 0;
+}
 void Inventory::removeBook(std::string bookName,std::string dest)
 {
     auto genre = getGenreToBooks().find(dest);
     if(genre != getGenreToBooks().end()){
         std::vector<std::string> &vec = genre->second;
-        for(int i=0 ;i<vec.size();i++)
+        for(unsigned int i=0 ;i<vec.size();i++)
         {
             if(vec[i]==bookName)
                 vec.erase(vec.begin() + i);
