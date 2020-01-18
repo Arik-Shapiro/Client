@@ -14,6 +14,12 @@ void Transmitter::run(ConnectionHandler &handler) {
         Message stompAnswer(answer);
         Message *stompMessage = protocol.processServerMessage(stompAnswer);
         if (stompMessage != nullptr) {
+            if (stompMessage->getCommand() == "DELETE") {
+                delete (stompMessage);
+                handler.close();
+                close();
+                break;
+            }
             std::string stompString = stompMessage->toString();
             if (!handler.sendLine(stompString)) {
                 close();

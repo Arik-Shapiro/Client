@@ -14,6 +14,8 @@
 class Client {
 public:
     Client();
+    virtual ~Client();
+    Client(const Client &aClient);
 private:
     void start();
     void readNextLine();
@@ -26,7 +28,7 @@ private:
     std::string processLoginCommand(std::vector<std::string> &command);
     std::string processJoinCommand(std::vector<std::string> &command);
     std::string processExitCommand(std::vector<std::string> &command);
-    std::string processAddCommand(std::vector<std::string> &command, std::string userCommand);
+    std::string processAddCommand(std::vector<std::string> &command);
     std::string processBorrowCommand(std::vector<std::string> &command);
     std::string processLogoutCommand();
     std::string processStatusCommand(std::vector<std::string> &command);

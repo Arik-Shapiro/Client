@@ -10,11 +10,15 @@ void Client::start() {
     readNextLine();
 }
 void Client::readNextLine() {
-    while(!protocol.ShouldTerminate()){
+    while(1){
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
         std::string line(buf);
+        if(line == "bye")
+        {
+            break;
+        }
         std::string stompCommand = processUserCommand(line);
         if(!stompCommand.empty())
             handler->sendLine(stompCommand);
@@ -28,24 +32,18 @@ std::string Client::processUserCommand(std::string &userCommand) {
     if (command[0] == "login" && command.size() > 3 && !connectedSocket) {
         return processLoginCommand(command);
     }
-    if(!connectedSocket){
+    if(!connectedSocket)
         return "";
-    }
-    if(command[0] == "join"){
+    if(command[0] == "join")
         return processJoinCommand(command);
-    }
-    if(command[0] == "exit"){
+    if(command[0] == "exit")
         return processExitCommand(command);
-    }
-    if(command[0] == "add"){
-        return processAddCommand(command,userCommand);
-    }
-    if(command[0] == "logout"){
+    if(command[0] == "add")
+        return processAddCommand(command);
+    if(command[0] == "logout")
         return processLogoutCommand();
-    }
-    if(command[0] == "status"){
+    if(command[0] == "status")
         return processStatusCommand(command);
-    }
     if(command[0] == "borrow")
         return processBorrowCommand(command);
     if(command[0] == "return")
@@ -63,15 +61,17 @@ std::string Client::processExitCommand(std::vector<std::string> &command){
 }
 std::string Client::processLogoutCommand()
 {
+    connectedSocket = false;
     return protocol.processLogout();
 }
-std::string Client::processAddCommand(std::vector<std::string> &command, std::string userCommand){
+std::string Client::processAddCommand(std::vector<std::string> &command){
     std::string destination = command[1];
     std::string bookName;
-    for(int i = 2 ; i <command.size();i++)
+    for(unsigned i = 2 ; i <command.size();i++)
     {
-        bookName+=command[i];
+        bookName+=command[i] + " ";
     }
+    bookName.resize(bookName.size() -1);
     return protocol.processAdd( destination,bookName, *name);
 }
 std::string Client::processJoinCommand(std::vector<std::string> &command)
@@ -104,18 +104,23 @@ Client::Client() : connectedSocket(false), handler(nullptr), protocol(), transmi
 std::string Client::processBorrowCommand(std::vector<std::string> &command) {
     std::string bookName;
     std::string destination = command[1];
-    for(int i = 2 ; i <command.size();i++)
+    for(unsigned int i = 2 ; i <command.size();i++)
     {
-        bookName+=command[i];
+        bookName+=command[i] + " ";
     }
+    bookName.resize(bookName.size() -1);
     return protocol.processBorrow(destination,bookName,*name);
 }
 std::string Client::processReturnCommand(std::vector<std::string> &command) {
     std::string bookName;
     std::string destination = command[1];
-    for(int i = 2 ; i <command.size();i++)
+    for(unsigned int i = 2 ; i <command.size();i++)
     {
-        bookName+=command[i];
+        bookName+=command[i] + " ";
     }
+    bookName.resize(bookName.size() -1);
     return protocol.processReturn(destination,bookName,*name);
+}
+
+Client::~Client() {
 }

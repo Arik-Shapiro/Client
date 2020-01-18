@@ -25,7 +25,7 @@ Message* ClientProtocol::processServerMessage(Message &message) {
     }
 }
 Message *ClientProtocol::acceptError(Message &message) {
-    std::cout << message.getBody() << std::endl;
+    std::cout << message.getBody() << std::endl; // print all error recieved from server.
     return nullptr;
 }
 Message *ClientProtocol::acceptMessage(Message &message) {
@@ -53,12 +53,12 @@ Message *ClientProtocol::acceptMessage(Message &message) {
                 if(bookExists != books.end()) {// genre exists
                     std::vector<std::string> book = bookExists->second;
                     for(int i = 0;i<book.size();i++){
-                        if(book[i] == bookName->second){
+                        if(book[i] == bookName->second){//Im the borrower of the book and I have the book.
                             std::string message = "SEND\ndestination:" + dest->second + "\n" +
                                     "function:hasBook\n" + "bookBorrower:"+myName+"\n"+
                                     "bookRec:" + name->second + "\n" + "bookName:"+ bookName->second + "\n" +
                                     myName+" has " + bookName->second + "\n";
-                            return new Message(message);
+                            return new Message(message); //sending a msg that I have the book.
                         }
                     }
                 }
@@ -70,17 +70,18 @@ Message *ClientProtocol::acceptMessage(Message &message) {
             auto bookRec = headers.find("bookRec");
             auto bookName = headers.find("bookName");
             auto dest = headers.find("destination");
+            // Someone has the book I want, checking that I dont already have the book.
             if(bookRec->second == myName && !inventory.hasBook(bookName->second,dest->second)){
                 std::string temp = message.getBody();
                 temp.erase(std::remove(temp.begin(),temp.end(),'\n'),temp.end());
                 std::cout << temp << std::endl;
-                inventory.addBook(bookName->second,dest->second);
-                inventory.bookBorrow(bookName->second,bookBorrower->second);
+                inventory.addBook(bookName->second,dest->second);//taking the book
+                inventory.bookBorrow(bookName->second,bookBorrower->second);//updating who borrowed me the book
                 std::string message = "SEND\ndestination:" + dest->second + "\n" +
                                       "function:tookBook\n" + "bookBorrower:"+bookBorrower->second+"\n"+
                                       + "bookName:"+ bookName->second + "\n" +
                                       +"Taking " + bookName->second + " from " + bookBorrower->second +"\n";
-                return new Message(message);
+                return new Message(message);//letting the borrower know im taking his book.
             }
         }
         if(itCommand->second == "tookBook")
@@ -91,9 +92,10 @@ Message *ClientProtocol::acceptMessage(Message &message) {
             auto bookBorrower = headers.find("bookBorrower");
             auto bookName = headers.find("bookName");
             auto dest = headers.find("destination");
+            //I offered to borrower a book, checking if i am the borrower.
             if((bookBorrower->second == myName )&& inventory.hasBook(bookName->second,dest->second))//i am the borrower
             {
-                inventory.removeBook(bookName->second,dest->second);
+                inventory.removeBook(bookName->second,dest->second);//removing the book from my inventory.
                 return nullptr;
             }
         }
@@ -103,17 +105,17 @@ Message *ClientProtocol::acceptMessage(Message &message) {
             temp.erase(std::remove(temp.begin(),temp.end(),'\n'),temp.end());
             std::cout << temp << std::endl;
             auto bookBorrower = headers.find("borrowerName");
-            if(bookBorrower->second == myName)
+            if(bookBorrower->second == myName)//Im the original owner of the book, taking it back.
             {
                 auto bookName = headers.find("bookName");
                 auto dest = headers.find("destination");
-                inventory.addBook(bookName->second,dest->second);
+                inventory.addBook(bookName->second,dest->second);//adding the book back to my inventory.
                 return nullptr;
             }
         }
         return nullptr;
     }
-    else {
+    else {//printing regular messages.
         std::string temp = message.getBody();
         temp.erase(std::remove(temp.begin(), temp.end(), '\n'), temp.end());
         replace( temp.begin(), temp.end(), ';', ':' );
@@ -141,8 +143,10 @@ Message *ClientProtocol::acceptReceipt(Message &message) {
         int receiptId = std::stoi(itReceipt->second);
         auto itCommand = inventory.getReceiptIdToCommand().find(receiptId);
         if(itCommand != inventory.getReceiptIdToCommand().end()){
-            std::cout << "Logout successful";
-            shouldTerminate = true;
+            std::cout <<"Logout successful" <<std::endl;
+            //shouldTerminate = true; continue receiving messages.
+            inventory.clearData();// clear all the maps for the next user to login.
+            return new Message("DELETE");
         }
     }
     return nullptr;
