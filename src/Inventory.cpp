@@ -5,7 +5,8 @@
 #include "../include/Inventory.h"
 #include <map>
 
-Inventory::Inventory() = default;
+Inventory::Inventory() : receiptIdToCommand(), genreToBooks(), bookToBorrowers(), genreToSubId() {
+}
 Inventory &Inventory::getInstance() {
     static Inventory inventory;
     return  inventory;

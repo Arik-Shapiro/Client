@@ -4,7 +4,7 @@
 
 #include "../include/Message.h"
 
-Message::Message(std::string message) {
+Message::Message(std::string message) : command(), headers(), body() {
     int endLine= message.find('\n');
     command = message.substr(0, endLine);
     message = message.substr(endLine + 1);

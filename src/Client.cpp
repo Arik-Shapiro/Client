@@ -17,6 +17,7 @@ void Client::readNextLine() {
         std::string line(buf);
         if(line == "bye")
         {
+            protocol.setShouldTerminate(true);
             std::cout<<"Bye bye...disconnecting"<<std::endl;
             break;
         }
@@ -24,8 +25,6 @@ void Client::readNextLine() {
         if(!stompCommand.empty())
             handler->sendLine(stompCommand);
     }
-   // delete(handler);
-   // delete(name);
 }
 std::string Client::processUserCommand(std::string &userCommand) {
     std::vector<std::string> command;
@@ -85,12 +84,14 @@ std::string Client::processLoginCommand(std::vector<std::string> &command){
     int delimiter = address.find(':');
     std::string ip = address.substr(0, delimiter);
     std::string port = address.substr(delimiter + 1);
+    if(handler != nullptr) delete(handler);
     handler = new ConnectionHandler(ip, stoi(port));
     if (!handler->connect()) {
         std::cerr << "Cannot connect to server " << address << std::endl;
         return "";
     }
     connectedSocket = true;
+    protocol.setShouldTerminate(false);
     std::thread transThread(&Transmitter::run, &transmitter, std::ref(*handler));
     transThread.detach();
     name = new std::string(command[2]);
@@ -99,7 +100,7 @@ std::string Client::processLoginCommand(std::vector<std::string> &command){
             "CONNECT\naccept-version:1.2\nhost:" + ip + "\nlogin:" + command[2] + "\npasscode:" + command[3] + '\n';
     return stompMessage;
 }
-Client::Client() : connectedSocket(false), handler(nullptr), protocol(), transmitter(protocol), name(new std::string("")),inputRec(true){
+Client::Client() : handler(nullptr), protocol(), transmitter(protocol), name(new std::string("")),connectedSocket(false), inputRec(true){
     start();
 }
 std::string Client::processBorrowCommand(std::vector<std::string> &command) {
@@ -124,6 +125,7 @@ std::string Client::processReturnCommand(std::vector<std::string> &command) {
 }
 
 Client::~Client() {
+    protocol.setShouldTerminate(true);
     delete(handler);
     delete(name);
 }

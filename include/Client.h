@@ -20,11 +20,11 @@ private:
     void start();
     void readNextLine();
     ConnectionHandler *handler;
-    bool connectedSocket;
     std::string processUserCommand(std::string &userCommand);
-    Transmitter transmitter;
     ClientProtocol protocol;
+    Transmitter transmitter;
     std::string* name;
+    bool connectedSocket;
     bool inputRec;
     std::string processLoginCommand(std::vector<std::string> &command);
     std::string processJoinCommand(std::vector<std::string> &command);

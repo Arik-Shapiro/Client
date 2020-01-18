@@ -66,7 +66,7 @@ Message *ClientProtocol::acceptMessage(Message &message) {
                 auto bookExists = books.find(dest->second);
                 if(bookExists != books.end()) {// genre exists
                     std::vector<std::string> book = bookExists->second;
-                    for(int i = 0;i<book.size();i++){
+                    for(unsigned int i = 0;i<book.size();i++){
                         if(book[i] == bookName->second){//Im the borrower of the book and I have the book.
                             std::string message = "SEND\ndestination:" + dest->second + "\n" +
                                     "function:hasBook\n" + "bookBorrower:"+myName+"\n"+
@@ -143,7 +143,7 @@ bool ClientProtocol::ShouldTerminate() const {
 void ClientProtocol::setShouldTerminate(bool shouldTerminate) {
     ClientProtocol::shouldTerminate = shouldTerminate;
 }
-ClientProtocol::ClientProtocol() : inventory(Inventory::getInstance()), shouldTerminate(false) {
+ClientProtocol::ClientProtocol() : inventory(Inventory::getInstance()), myName(), shouldTerminate(false) {
 }
 Message *ClientProtocol::acceptConnected(Message &message) {
     std::cout << "Login successful" << std::endl;

@@ -22,16 +22,13 @@ public:
     std::string processLogout();
     std::string processStatus(std::string &,std::string &name);
     std::string processReturn(std::string &dest, std::string &bookName, std::string &name);
+    void setMyName(const std::string &myName);
 private:
     Message* acceptConnected(Message &message);
     Message* acceptReceipt(Message &message);
-    std::string myName;
-public:
-    void setMyName(const std::string &myName);
-
-private:
-    bool shouldTerminate;
     Inventory inventory;
+    std::string myName;
+    bool shouldTerminate;
     Message *acceptMessage(Message &message);
     Message *acceptError(Message &message);
 };
