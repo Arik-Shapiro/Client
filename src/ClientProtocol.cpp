@@ -5,7 +5,6 @@
 #include "../include/ClientProtocol.h"
 #include <iostream>
 #include <algorithm>
-#include <boost/algorithm/string.hpp>
 
 Message* ClientProtocol::processServerMessage(Message &message) {
     const std::string& command = message.getCommand();
@@ -23,6 +22,7 @@ Message* ClientProtocol::processServerMessage(Message &message) {
     {
         return acceptError(message);
     }
+    return nullptr;
 }
 Message *ClientProtocol::acceptError(Message &message) {
     std::cout << message.getBody() << std::endl; // print all error recieved from server.
@@ -32,10 +32,24 @@ Message *ClientProtocol::acceptMessage(Message &message) {
     const auto& headers = message.getHeaders();
     auto itCommand = headers.find("function");
     if(itCommand != headers.end()) {
+        if(itCommand->second == "printForMe")
+        {
+            auto name = headers.find("name");
+            if(name->second == myName)
+            {
+                std::string temp = message.getBody();
+                temp.erase(std::remove(temp.begin(), temp.end(), '\n'), temp.end());
+                replace( temp.begin(), temp.end(), ';', ':' );
+                std::cout << temp << std::endl;
+                return nullptr;
+            }
+            return nullptr;
+        }
         if (itCommand->second == "printInv") {
             std::string inv = inventory.printInv();
             auto dest = headers.find("destination");
-            std::string message = "SEND\ndestination:" + dest->second + "\n" + this->myName + ";" + inv + "\n";
+            auto name = headers.find("name");
+            std::string message = "SEND\ndestination:" + dest->second + "\n" +"function:printForMe\n" +"name:"+name->second+"\n" + this->myName + ";" + inv + "\n";
             return new Message(message);
         }
         if(itCommand->second == "borrow")
@@ -154,7 +168,7 @@ Message *ClientProtocol::acceptReceipt(Message &message) {
 std::string ClientProtocol::processStatus(std::string &dest,std::string &name)
 {
     std::string stompMessage =
-            "SEND\nfunction:printInv\ndestination:" + dest +"\nname:" +name + '\n' ;
+            "SEND\nfunction:printInv\ndestination:" + dest +"\nname:" +name + '\n' +"book status"+ "\n" ;
     inventory.increaseReceipt();
     return stompMessage;
 };

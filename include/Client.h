@@ -25,6 +25,7 @@ private:
     Transmitter transmitter;
     ClientProtocol protocol;
     std::string* name;
+    bool inputRec;
     std::string processLoginCommand(std::vector<std::string> &command);
     std::string processJoinCommand(std::vector<std::string> &command);
     std::string processExitCommand(std::vector<std::string> &command);
@@ -32,7 +33,6 @@ private:
     std::string processBorrowCommand(std::vector<std::string> &command);
     std::string processLogoutCommand();
     std::string processStatusCommand(std::vector<std::string> &command);
-
     std::string processReturnCommand(std::vector<std::string> &command);
 };
 #endif //CLIENT_CLIENT_H

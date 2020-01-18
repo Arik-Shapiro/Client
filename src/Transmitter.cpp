@@ -16,16 +16,17 @@ void Transmitter::run(ConnectionHandler &handler) {
         if (stompMessage != nullptr) {
             if (stompMessage->getCommand() == "DELETE") {
                 delete (stompMessage);
-                handler.close();
-                close();
-                break;
-            }
-            std::string stompString = stompMessage->toString();
-            if (!handler.sendLine(stompString)) {
                 close();
             }
-        }
-        delete(stompMessage);
+            else
+                {
+                std::string stompString = stompMessage->toString();
+                    delete(stompMessage);
+                if (!handler.sendLine(stompString)) {
+                    close();
+                    }
+                }
+            }
     }
     handler.close();
 }

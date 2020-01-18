@@ -10,21 +10,22 @@ void Client::start() {
     readNextLine();
 }
 void Client::readNextLine() {
-    while(1){
+    while(inputRec){
         const short bufsize = 1024;
         char buf[bufsize];
         std::cin.getline(buf, bufsize);
         std::string line(buf);
         if(line == "bye")
         {
+            std::cout<<"Bye bye...disconnecting"<<std::endl;
             break;
         }
         std::string stompCommand = processUserCommand(line);
         if(!stompCommand.empty())
             handler->sendLine(stompCommand);
     }
-    delete(handler);
-    delete(name);
+   // delete(handler);
+   // delete(name);
 }
 std::string Client::processUserCommand(std::string &userCommand) {
     std::vector<std::string> command;
@@ -98,7 +99,7 @@ std::string Client::processLoginCommand(std::vector<std::string> &command){
             "CONNECT\naccept-version:1.2\nhost:" + ip + "\nlogin:" + command[2] + "\npasscode:" + command[3] + '\n';
     return stompMessage;
 }
-Client::Client() : connectedSocket(false), handler(nullptr), protocol(), transmitter(protocol), name(new std::string("")){
+Client::Client() : connectedSocket(false), handler(nullptr), protocol(), transmitter(protocol), name(new std::string("")),inputRec(true){
     start();
 }
 std::string Client::processBorrowCommand(std::vector<std::string> &command) {
@@ -123,4 +124,6 @@ std::string Client::processReturnCommand(std::vector<std::string> &command) {
 }
 
 Client::~Client() {
+    delete(handler);
+    delete(name);
 }
