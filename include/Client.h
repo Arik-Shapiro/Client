@@ -16,11 +16,15 @@ public:
     Client();
     virtual ~Client();
     Client(const Client &aClient);
-    Client &operator=(const Client &sess);
+    Client &operator=(Client &sess);
 private:
     void start();
     void readNextLine();
     ConnectionHandler *handler;
+public:
+    ConnectionHandler *getHandler() const;
+
+private:
     std::string processUserCommand(std::string &userCommand);
     ClientProtocol protocol;
 public:

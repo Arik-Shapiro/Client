@@ -131,19 +131,23 @@ Client::~Client() {
     delete(name);
 }
 
-Client::Client(const Client &aClient) :handler(nullptr),protocol(),transmitter(aClient.getTransmitter()),name(),connectedSocket(),inputRec(){
+Client::Client(const Client &aClient) :handler(aClient.getHandler()),protocol(aClient.getProtocol()),transmitter(aClient.getTransmitter()),name(aClient.getName()),connectedSocket(aClient.connectedSocket),inputRec(aClient.inputRec){
 }
 
 const Transmitter &Client::getTransmitter() const {
     return transmitter;
 }
 
-Client &Client::operator=(const Client &cl) {
+Client &Client::operator=(Client &cl) {
+    delete(handler);
+    delete(name);
     this->handler = (cl.handler);
     this->protocol = (cl.protocol);
     this->name = (cl.name);
     this->connectedSocket = cl.connectedSocket;
     this->inputRec = cl.inputRec;
+    cl.handler = nullptr;
+    cl.name = nullptr;
     return *this;
 }
 
@@ -161,4 +165,8 @@ bool Client::isInputRec() const {
 
 const ClientProtocol &Client::getProtocol() const {
     return protocol;
+}
+
+ConnectionHandler *Client::getHandler() const {
+    return handler;
 }
