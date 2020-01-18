@@ -94,13 +94,14 @@ std::string Client::processLoginCommand(std::vector<std::string> &command){
     protocol.setShouldTerminate(false);
     std::thread transThread(&Transmitter::run, &transmitter, std::ref(*handler));
     transThread.detach();
+    if(name != nullptr) delete(name);
     name = new std::string(command[2]);
     protocol.setMyName(command[2]);
     std::string stompMessage =
             "CONNECT\naccept-version:1.2\nhost:" + ip + "\nlogin:" + command[2] + "\npasscode:" + command[3] + '\n';
     return stompMessage;
 }
-Client::Client() : handler(nullptr), protocol(), transmitter(protocol), name(new std::string("")),connectedSocket(false), inputRec(true){
+Client::Client() : handler(nullptr), protocol(), transmitter(protocol), name(nullptr),connectedSocket(false), inputRec(true){
     start();
 }
 std::string Client::processBorrowCommand(std::vector<std::string> &command) {
@@ -128,4 +129,36 @@ Client::~Client() {
     protocol.setShouldTerminate(true);
     delete(handler);
     delete(name);
+}
+
+Client::Client(const Client &aClient) :handler(nullptr),protocol(),transmitter(aClient.getTransmitter()),name(),connectedSocket(),inputRec(){
+}
+
+const Transmitter &Client::getTransmitter() const {
+    return transmitter;
+}
+
+Client &Client::operator=(const Client &cl) {
+    this->handler = (cl.handler);
+    this->protocol = (cl.protocol);
+    this->name = (cl.name);
+    this->connectedSocket = cl.connectedSocket;
+    this->inputRec = cl.inputRec;
+    return *this;
+}
+
+std::string *Client::getName() const {
+    return name;
+}
+
+bool Client::isConnectedSocket() const {
+    return connectedSocket;
+}
+
+bool Client::isInputRec() const {
+    return inputRec;
+}
+
+const ClientProtocol &Client::getProtocol() const {
+    return protocol;
 }

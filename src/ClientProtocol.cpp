@@ -46,6 +46,7 @@ Message *ClientProtocol::acceptMessage(Message &message) {
             return nullptr;
         }
         if (itCommand->second == "printInv") {
+            if(inventory.getGenreToBooks().size() == 0) return nullptr;
             std::string inv = inventory.printInv();
             auto dest = headers.find("destination");
             auto name = headers.find("name");
