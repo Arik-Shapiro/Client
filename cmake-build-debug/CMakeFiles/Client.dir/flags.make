@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/lior/CLionProjects/Client/. -I/home/lior/CLionProjects/Client/bin -I/home/lior/CLionProjects/Client/include -I/home/lior/CLionProjects/Client/src 
+CXX_INCLUDES = -I/users/studs/bsc/2020/liorpev/CLionProjects/Client/. -I/users/studs/bsc/2020/liorpev/CLionProjects/Client/bin -I/users/studs/bsc/2020/liorpev/CLionProjects/Client/include -I/users/studs/bsc/2020/liorpev/CLionProjects/Client/src 
 

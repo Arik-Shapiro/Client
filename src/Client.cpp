@@ -149,7 +149,7 @@ Client &Client::operator=(Client &cl) {
     delete(handler);
     delete(name);
     this->handler = (cl.handler);
-    this->protocol = (cl.protocol);
+    this->protocol =cl.protocol;
     this->name = (cl.name);
     this->connectedSocket = cl.connectedSocket;
     this->inputRec = cl.inputRec;

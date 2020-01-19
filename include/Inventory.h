@@ -26,7 +26,6 @@ public:
     void removeBook(std::string, std::string);
     void bookBorrow(std::string bookName, std::string borrowerName);
     void clearData();
-;
 private:
     std::map<int, std::string> receiptIdToCommand;
     std::map<std::string, std::vector<std::string>> genreToBooks;
