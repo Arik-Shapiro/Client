@@ -85,7 +85,10 @@ std::string Client::processLoginCommand(std::vector<std::string> &command){
     std::string ip = address.substr(0, delimiter);
     std::string port = address.substr(delimiter + 1);
     if(handler != nullptr) delete(handler);
-    handler = new ConnectionHandler(ip, stoi(port));
+    if(ip == "localhost"){
+        ip = "127.0.0.1";
+    }
+        handler = new ConnectionHandler(ip, stoi(port));
     if (!handler->connect()) {
         std::cerr << "Cannot connect to server " << address << std::endl;
         return "";

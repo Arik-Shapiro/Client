@@ -30,7 +30,15 @@ Message *ClientProtocol::acceptError(Message &message) {
 }
 Message *ClientProtocol::acceptMessage(Message &message) {
     const auto& headers = message.getHeaders();
+    const auto& body = message.getBody();
     auto itCommand = headers.find("function");
+    if(!body.empty())
+    {
+        std::string temp = body;
+        temp.erase(std::remove(temp.begin(), temp.end(), '\n'), temp.end());
+        replace( temp.begin(), temp.end(), ';', ':' );
+        std::cout << temp << std::endl;
+    }
     if(itCommand != headers.end()) {
         if(itCommand->second == "printForMe")
         {
@@ -159,7 +167,6 @@ Message *ClientProtocol::acceptReceipt(Message &message) {
         auto itCommand = inventory.getReceiptIdToCommand().find(receiptId);
         if(itCommand != inventory.getReceiptIdToCommand().end()){
             std::cout <<"Logout successful" <<std::endl;
-            //shouldTerminate = true; continue receiving messages.
             inventory.clearData();// clear all the maps for the next user to login.
             return new Message("DELETE");
         }
@@ -187,13 +194,13 @@ std::string ClientProtocol::processJoin(std::string &dest){
     if(itReceipt != genreToId.end()) { // user already subscribed to that genre
         std::string stompMessage =
                 "SUBSCRIBE\ndestination:" + dest + "\nid:" + std::to_string(-1) + "\nreceipt:" +
-                std::to_string(-1) + '\n';
+                std::to_string(-1) + '\n'+"\n" + "Joined club " + dest +"\n";
         return stompMessage;
     }
     //user isnt subscrbied to the genre;
     std::string stompMessage =
             "SUBSCRIBE\ndestination:" + dest + "\nid:" + std::to_string(inventory.getSubId()) + "\nreceipt:" +
-            std::to_string(inventory.getReceiptId()) + '\n';
+            std::to_string(inventory.getReceiptId()) + '\n'+"\n" + "Joined club " + dest +"\n";
         genreToId.insert({dest, inventory.getSubId()});// gave a topic an id
         inventory.increaseReceipt();
         inventory.increaseSubId();
@@ -205,12 +212,12 @@ std::string ClientProtocol::processExit(std::string &dest)
     auto itReceipt = genreToId.find(dest);
     if(itReceipt != genreToId.end()) { // user is subscribed to that genre
         std::string stompMessage =
-                "UNSUBSCRIBE\nid:" + std::to_string(itReceipt->second) + '\n';
+                "UNSUBSCRIBE\nid:" + std::to_string(itReceipt->second) + '\n' + "\n" + "Exited club " + dest +"\n";
         inventory.increaseReceipt();
         genreToId.erase(itReceipt); // removes the genre
         return stompMessage;
     }
-    std::string stompMessage ="UNSUBSCRIBE\nid:" + std::to_string(-1) + '\n'; //isnt subscribed and asks to unsubscrib
+    std::string stompMessage ="UNSUBSCRIBE\nid:" + std::to_string(-1) + '\n'+ "Exited club " + dest +"\n"; //isnt subscribed and asks to unsubscrib
     return stompMessage;
 }
 std::string ClientProtocol::processAdd(std::string &dest, std::string &bookName,std::string &name)
@@ -224,7 +231,7 @@ std::string ClientProtocol::processAdd(std::string &dest, std::string &bookName,
             booksOfGenre.push_back(bookName);
             std::string stompMessage =
                     "SEND\ndestination:" + dest
-                    +'\n' + name + " has added the book " + bookName +'\n';
+                    +'\n' + '\n' + name + " has added the book " + bookName +'\n';
             return stompMessage;
         }
         return "";
@@ -232,14 +239,14 @@ std::string ClientProtocol::processAdd(std::string &dest, std::string &bookName,
     books[dest].push_back(bookName);
     std::string stompMessage =
             "SEND\ndestination:" + dest
-            +'\n' + name + " has added the book " + bookName +'\n';
+            +'\n' + '\n' + name + " has added the book " + bookName +'\n';
     return stompMessage;
 }
 
 std::string ClientProtocol::processBorrow(std::string &dest, std::string &bookName, std::string &name) {
     std::string stompMessage =
             "SEND\ndestination:" + dest + "\nfunction:borrow" +"\nname:" +name + '\n'
-            +"bookName:" + bookName + "\n" + name +" wish to borrow " + bookName + "\n";
+            +"bookName:" + bookName + "\n"+"\n" + name +" wish to borrow " + bookName + "\n";
     return stompMessage;
 }
 std::string ClientProtocol::processReturn(std::string &dest, std::string &bookName, std::string &name) {
@@ -262,7 +269,7 @@ std::string ClientProtocol::processReturn(std::string &dest, std::string &bookNa
         return "";//the book isnt borrowed from anyone
     std::string stompMessage =
             "SEND\ndestination:" + dest + "\nfunction:return" + "\n"
-            +"bookName:" + bookName + "\n" "borrowerName:" + borrowerName +"\n" +
+            +"bookName:" + bookName + "\n" "borrowerName:" + borrowerName +"\n" + "\n"
             "Returning " + bookName + " to " + borrowerName + "\n";
     return stompMessage;
 }
