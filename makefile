@@ -2,13 +2,13 @@ CFLAGS:=-c -Wall -Weffc++ -g -std=c++11 -Iinclude
 LDFLAGS:=-lboost_system
 
 all: Client
-	g++ -pthread -o main bin/main.o bin/Client.o bin/ClientProtocol.o bin/connectionHandler.o bin/Inventory.o bin/Message.o bin/Transmitter.o $(LDFLAGS) $(DEPS)
+	g++ -pthread -o bin/StompBookClubClient bin/main.o bin/Client.o bin/ClientProtocol.o bin/connectionHandler.o bin/Inventory.o bin/Message.o bin/Transmitter.o $(LDFLAGS) $(DEPS)
 
 Client: bin/main.o bin/Client.o bin/ClientProtocol.o bin/connectionHandler.o bin/Inventory.o bin/Message.o bin/Transmitter.o
 
 
-bin/main.o: main.cpp
-	g++ -pthread $(CFLAGS) -o bin/main.o main.cpp
+bin/main.o: src/main.cpp
+	g++ -pthread $(CFLAGS) -o bin/main.o src/main.cpp
 	
 bin/connectionHandler.o: src/connectionHandler.cpp
 	g++ -pthread $(CFLAGS) -o bin/connectionHandler.o src/connectionHandler.cpp

@@ -57,22 +57,9 @@ include CMakeFiles/Client.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Client.dir/flags.make
 
-CMakeFiles/Client.dir/main.cpp.o: CMakeFiles/Client.dir/flags.make
-CMakeFiles/Client.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/liorpev/CLionProjects/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Client.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Client.dir/main.cpp.o -c /users/studs/bsc/2020/liorpev/CLionProjects/Client/main.cpp
-
-CMakeFiles/Client.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Client.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/liorpev/CLionProjects/Client/main.cpp > CMakeFiles/Client.dir/main.cpp.i
-
-CMakeFiles/Client.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Client.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/liorpev/CLionProjects/Client/main.cpp -o CMakeFiles/Client.dir/main.cpp.s
-
 CMakeFiles/Client.dir/src/connectionHandler.cpp.o: CMakeFiles/Client.dir/flags.make
 CMakeFiles/Client.dir/src/connectionHandler.cpp.o: ../src/connectionHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/liorpev/CLionProjects/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Client.dir/src/connectionHandler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/liorpev/CLionProjects/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Client.dir/src/connectionHandler.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Client.dir/src/connectionHandler.cpp.o -c /users/studs/bsc/2020/liorpev/CLionProjects/Client/src/connectionHandler.cpp
 
 CMakeFiles/Client.dir/src/connectionHandler.cpp.i: cmake_force
@@ -82,6 +69,19 @@ CMakeFiles/Client.dir/src/connectionHandler.cpp.i: cmake_force
 CMakeFiles/Client.dir/src/connectionHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Client.dir/src/connectionHandler.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/liorpev/CLionProjects/Client/src/connectionHandler.cpp -o CMakeFiles/Client.dir/src/connectionHandler.cpp.s
+
+CMakeFiles/Client.dir/src/main.cpp.o: CMakeFiles/Client.dir/flags.make
+CMakeFiles/Client.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/liorpev/CLionProjects/Client/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Client.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Client.dir/src/main.cpp.o -c /users/studs/bsc/2020/liorpev/CLionProjects/Client/src/main.cpp
+
+CMakeFiles/Client.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Client.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/liorpev/CLionProjects/Client/src/main.cpp > CMakeFiles/Client.dir/src/main.cpp.i
+
+CMakeFiles/Client.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Client.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/liorpev/CLionProjects/Client/src/main.cpp -o CMakeFiles/Client.dir/src/main.cpp.s
 
 CMakeFiles/Client.dir/src/Client.cpp.o: CMakeFiles/Client.dir/flags.make
 CMakeFiles/Client.dir/src/Client.cpp.o: ../src/Client.cpp
@@ -150,8 +150,8 @@ CMakeFiles/Client.dir/src/ClientProtocol.cpp.s: cmake_force
 
 # Object files for target Client
 Client_OBJECTS = \
-"CMakeFiles/Client.dir/main.cpp.o" \
 "CMakeFiles/Client.dir/src/connectionHandler.cpp.o" \
+"CMakeFiles/Client.dir/src/main.cpp.o" \
 "CMakeFiles/Client.dir/src/Client.cpp.o" \
 "CMakeFiles/Client.dir/src/Message.cpp.o" \
 "CMakeFiles/Client.dir/src/Transmitter.cpp.o" \
@@ -161,8 +161,8 @@ Client_OBJECTS = \
 # External object files for target Client
 Client_EXTERNAL_OBJECTS =
 
-Client: CMakeFiles/Client.dir/main.cpp.o
 Client: CMakeFiles/Client.dir/src/connectionHandler.cpp.o
+Client: CMakeFiles/Client.dir/src/main.cpp.o
 Client: CMakeFiles/Client.dir/src/Client.cpp.o
 Client: CMakeFiles/Client.dir/src/Message.cpp.o
 Client: CMakeFiles/Client.dir/src/Transmitter.cpp.o

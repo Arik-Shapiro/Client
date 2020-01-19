@@ -109,7 +109,6 @@ std::string Client::processLoginCommand(std::vector<std::string> &command){
     return stompMessage;
 }
 Client::Client() : handler(nullptr), protocol(), transmitter(protocol), name(nullptr),connectedSocket(false), inputRec(true){
-    start();
 }
 std::string Client::processBorrowCommand(std::vector<std::string> &command) {
     std::string bookName;

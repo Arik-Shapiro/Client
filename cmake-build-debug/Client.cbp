@@ -113,9 +113,6 @@
 		<Unit filename="/users/studs/bsc/2020/liorpev/CLionProjects/Client/include/connectionHandler.h">
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/liorpev/CLionProjects/Client/main.cpp">
-			<Option target="Client"/>
-		</Unit>
 		<Unit filename="/users/studs/bsc/2020/liorpev/CLionProjects/Client/src/Client.cpp">
 			<Option target="Client"/>
 		</Unit>
@@ -132,6 +129,9 @@
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/users/studs/bsc/2020/liorpev/CLionProjects/Client/src/connectionHandler.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/users/studs/bsc/2020/liorpev/CLionProjects/Client/src/main.cpp">
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/users/studs/bsc/2020/liorpev/CLionProjects/Client/CMakeLists.txt">
