@@ -29,6 +29,8 @@ void Client::readNextLine() {
 std::string Client::processUserCommand(std::string &userCommand) {
     std::vector<std::string> command;
     boost::split(command, userCommand, boost::is_any_of(" "));
+    if(protocol.isShouldTerminate())
+        connectedSocket = false;
     if (command[0] == "login" && command.size() > 3 && !connectedSocket) {
         return processLoginCommand(command);
     }
@@ -94,14 +96,16 @@ std::string Client::processLoginCommand(std::vector<std::string> &command){
         return "";
     }
     connectedSocket = true;
+    int temp = protocol.addLoginError();
     protocol.setShouldTerminate(false);
     std::thread transThread(&Transmitter::run, &transmitter, std::ref(*handler));
     transThread.detach();
     if(name != nullptr) delete(name);
     name = new std::string(command[2]);
-    protocol.setMyName(command[2]);
+    protocol.setMyName(*name);
     std::string stompMessage =
-            "CONNECT\naccept-version:1.2\nhost:" + ip + "\nlogin:" + command[2] + "\npasscode:" + command[3] + '\n';
+            "CONNECT\naccept-version:1.2\nhost:" + ip + "\nlogin:" + command[2] + "\npasscode:" + command[3] + "\nreceipt:" +
+    std::to_string(temp) + '\n';
     return stompMessage;
 }
 Client::Client() : handler(nullptr), protocol(), transmitter(protocol), name(nullptr),connectedSocket(false), inputRec(true){

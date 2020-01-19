@@ -22,6 +22,7 @@ public:
     std::string processLogout();
     std::string processStatus(std::string &,std::string &name);
     std::string processReturn(std::string &dest, std::string &bookName, std::string &name);
+    int addLoginError();
     void setMyName(const std::string &myName);
 private:
     Message* acceptConnected(Message &message);
@@ -29,7 +30,12 @@ private:
     Inventory inventory;
     std::string myName;
     bool shouldTerminate;
+public:
+    bool isShouldTerminate() const;
+
+private:
     Message *acceptMessage(Message &message);
     Message *acceptError(Message &message);
+
 };
 #endif //CLIENT_CLIENTPROTOCOL_H

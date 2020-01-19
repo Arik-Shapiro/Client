@@ -2,6 +2,7 @@
 // Created by arik on 13.1.2020.
 //
 
+#include <algorithm>
 #include "../include/Message.h"
 
 Message::Message(std::string message) : command(), headers(), body() {
@@ -9,7 +10,7 @@ Message::Message(std::string message) : command(), headers(), body() {
     command = message.substr(0, endLine);
     message = message.substr(endLine + 1);
     int colonIndex = message.find(':');
-    while(colonIndex != -1){
+    while(colonIndex != -1 && message[0] != '\n'){
         endLine = message.find('\n');
         std::string header = message.substr(0, endLine);
         std::string key = header.substr(0, colonIndex);
